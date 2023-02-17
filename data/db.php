@@ -5,14 +5,12 @@ $movies = [
         'title' => 'Harry Potter',
         'plot' => 'Lorem Ipsum Dolor Sit Amet',
         'language' => 'Inglese',
-        // 'genre' => 'fantasy'
+        'genre' => 'fantasy'
     ],
     [
         'title' => 'Il Signore Degli Anelli',
         'plot' => 'Lorem Ipsum Dolor Sit Amet',
         'language' => 'Italiano',
-        // 'genre' => 'fantascienza'
+        'genre' => 'fantascienza'
     ]
 ];
-
-$genres = ['fantasy', 'fantscienza'];
