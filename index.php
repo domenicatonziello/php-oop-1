@@ -5,15 +5,15 @@ class Movie
     public $title;
     public $plot;
     public $language;
-    public $genre;
+    public $genres;
 
     // definisco costruttore
-    public function __construct($_title, $_plot, $_language, $_genre)
+    public function __construct($_title, $_plot, $_language, $_genres)
     {
         $this->title = $_title;
         $this->plot = $_plot;
         $this->language = $_language;
-        $this->genre = $_genre;
+        $this->genres = $_genres;
     }
     // definisco metodi
     public function PlotPiece()
@@ -21,9 +21,21 @@ class Movie
         return substr($this->plot, 0, 18) . '...';
     }
 }
-$first_film = new Movie('Harry Potter', 'lorem ipsum dolor sit amet', 'inglese', 'fantasy');
 
-$second_film = new Movie('Il Signore Degli Anelli', 'lorem ipsum dolor sit amet', 'italiano', 'fantascienza');
+class Genre
+{
+    public $name;
+    public function __construct($_name)
+    {
+        $this->name = $_name;
+    }
+}
+
+
+$first_film = new Movie('Harry Potter', 'lorem ipsum dolor sit amet', 'inglese', [new Genre('fantasy'), new Genre('avventura'), new Genre('fantascienza')]);
+
+$second_film = new Movie('Il Signore Degli Anelli', 'lorem ipsum dolor sit amet', 'italiano', [new Genre('fantascienza'), new Genre('epico')]);
+
 var_dump($first_film);
 var_dump($second_film);
 echo $first_film->PlotPiece();
