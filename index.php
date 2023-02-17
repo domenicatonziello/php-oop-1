@@ -1,44 +1,18 @@
 <?php
-class Movie
-{
-    // definisco istanze
-    public $title;
-    public $plot;
-    public $language;
-    public $genres;
 
-    // definisco costruttore
-    public function __construct($_title, $_plot, $_language, $_genres)
-    {
-        $this->title = $_title;
-        $this->plot = $_plot;
-        $this->language = $_language;
-        $this->genres = $_genres;
-    }
-    // definisco metodi
-    public function PlotPiece()
-    {
-        return substr($this->plot, 0, 18) . '...';
-    }
+include_once __DIR__ . '/models/Movie.php';
+include_once __DIR__ . '/models/Genre.php';
+include_once __DIR__ . '/data/db.php';
+
+
+// $first_film = new Movie('Harry Potter', 'lorem ipsum dolor sit amet', 'inglese', [new Genre('fantasy'), new Genre('avventura'), new Genre('fantascienza')]);
+// $second_film = new Movie('Il Signore Degli Anelli', 'lorem ipsum dolor sit amet', 'italiano', [new Genre('fantascienza'), new Genre('epico')]);
+
+$movie_objects = [];
+foreach ($movies as $movie) {
+    $movie = new Movie($movie['title'], $movie['plot'], $movie['language'], $movie['genre']);
+    $movie_objects[] = $movie;
 }
-
-class Genre
-{
-    public $name;
-    public function __construct($_name)
-    {
-        $this->name = $_name;
-    }
-}
-
-
-$first_film = new Movie('Harry Potter', 'lorem ipsum dolor sit amet', 'inglese', [new Genre('fantasy'), new Genre('avventura'), new Genre('fantascienza')]);
-
-$second_film = new Movie('Il Signore Degli Anelli', 'lorem ipsum dolor sit amet', 'italiano', [new Genre('fantascienza'), new Genre('epico')]);
-
-var_dump($first_film);
-var_dump($second_film);
-echo $first_film->PlotPiece();
 
 ?>
 <!DOCTYPE html>
@@ -52,7 +26,13 @@ echo $first_film->PlotPiece();
 </head>
 
 <body>
-
+    <section id="movies">
+        <?php foreach ($movie_objects as $movie) : ?>
+            <h1> <?= $movie->title ?></h1>
+            <p> <?= $movie->PlotPiece() ?> </p>
+            <p><?= $movie->language ?></p>
+        <?php endforeach; ?>
+    </section>
 </body>
 
 </html>
